@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.portalperfect.adminapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/adminicon"
+        android:label="Admin Achievers Academy "
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Splashscreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".LoginScreen" />
+        <activity
+            android:name=".HomeScreen"
+            android:label="@string/title_activity_home_screen"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".RegisterStudent" />
+        <activity android:name=".ViewAllStudents" />
+        <activity
+            android:name=".AttendanceManagement"
+            android:label="@string/title_activity_attendance_management"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ResultManagement"
+            android:label="@string/title_activity_result_management"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".GoalManagement"
+            android:label="@string/title_activity_goal_management"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".EmployeeMaagement"
+            android:label="@string/title_activity_employee_maagement"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FeeManagement"
+            android:label="@string/title_activity_fee_management"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Result_add_Group" />
+        <activity android:name=".Result_View_Groups" />
+        <activity android:name=".AddNewStudent" />
+        <activity
+            android:name=".StudentDetails"
+            android:label="@string/title_activity_student_details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".AddResultsPage" />
+        <activity android:name=".ViewPreviousResults" />
+        <activity android:name=".View_Previous_subject_marks" />
+        <activity android:name=".SetGoal" />
+        <activity android:name=".AddNewsLetter" />
+        <activity android:name=".ExportFiles" />
+        <activity android:name=".DeleteStudents"></activity>
+    </application>
+
+</manifest>

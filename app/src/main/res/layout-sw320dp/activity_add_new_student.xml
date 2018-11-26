@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddNewStudent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add New Employee"
+                android:background="@color/colorPrimaryDark"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColor="#ffffff"
+                android:fontFamily="@font/calibri"
+                style="@style/Base.TextAppearance.AppCompat.Medium"
+                />
+
+            <EditText
+                android:id="@+id/edt_emp_fullname"
+                android:fontFamily="@font/calibri"
+                android:padding="10dp"
+                android:hint="Full Name"
+                android:background="@android:drawable/editbox_background"
+                android:layout_margin="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/edt_emp_mobile"
+                android:fontFamily="@font/calibri"
+                android:padding="10dp"
+                android:hint="Mobile Number"
+                android:inputType="numberDecimal"
+                android:background="@android:drawable/editbox_background"
+                android:layout_margin="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <EditText
+                android:id="@+id/edt_emp_email"
+                android:fontFamily="@font/calibri"
+                android:padding="10dp"
+                android:hint="Email Id"
+                android:inputType="textEmailAddress"
+                android:background="@android:drawable/editbox_background"
+                android:layout_margin="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <EditText
+                android:id="@+id/edt_emp_password"
+                android:fontFamily="@font/calibri"
+                android:padding="10dp"
+                android:hint="Password"
+                android:background="@android:drawable/editbox_background"
+
+                android:layout_margin="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+            <Button
+                android:id="@+id/btn_upload_emp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Upload Data"
+                android:textColor="#ffffff"
+                android:background="@color/colorPrimaryDark"
+                android:layout_margin="15dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

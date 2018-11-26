@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Admin Achievers Academy</string>
+    <string name="title_activity_home_screen">HomeScreen</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_attendance_management">AttendanceManagement</string>
+    <string name="title_activity_result_management">ResultManagement</string>
+    <string name="title_activity_goal_management">GoalManagement</string>
+    <string name="title_activity_employee_maagement">EmployeeMaagement</string>
+    <string name="title_activity_fee_management">FeeManagement</string>
+
+
+    <string-array name="array_technology">
+        <item>Add New Group </item>
+
+        <item>View All Groups</item>
+
+
+    </string-array>
+
+    <string-array name="courses_spin">
+        <item>  CA Foundation</item>
+        <item>  Ca Intermediate</item>
+        <item>  CA Final</item>
+        <item>  CS Foundation</item>
+        <item>  CS Executive</item>
+        <item>  CS Professional</item>
+        <item> 11th and 12th Commerce</item>
+        <item> B.com - 1st Sem</item>
+        <item>  B.com - 2nd Sem</item>
+        <item>  B.com - 3rd Sem</item>
+        <item>  B.com - 4th sem</item>
+        <item> B.com - 5th sem</item>
+        <item>  B.com - 6th sem</item>
+        <item>  M.Com</item>
+
+    </string-array>
+    <string name="title_activity_student_details">StudentDetails</string>
+
+</resources>
