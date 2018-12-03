@@ -5,9 +5,17 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/adminicon"
+        android:icon="@drawable/adminicon"
         android:label="Admin Achievers Academy "
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
@@ -45,20 +53,54 @@
             android:name=".FeeManagement"
             android:label="@string/title_activity_fee_management"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Result_add_Group" />
-        <activity android:name=".Result_View_Groups" />
+        <activity android:name=".Result_add_Group"
+
+            android:label="Add New Group">
+
+        </activity>
+        <activity android:name=".Result_View_Groups"
+            android:label="View All Groups">
+
+        </activity>
         <activity android:name=".AddNewStudent" />
         <activity
             android:name=".StudentDetails"
             android:label="@string/title_activity_student_details"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AddResultsPage" />
-        <activity android:name=".ViewPreviousResults" />
+        <activity android:name=".AddResultsPage"
+            android:label="Add Results">
+
+        </activity>
+        <activity android:name=".ViewPreviousResults"
+            android:label="Previous Results">
+
+        </activity>
         <activity android:name=".View_Previous_subject_marks" />
-        <activity android:name=".SetGoal" />
-        <activity android:name=".AddNewsLetter" />
+        <activity android:name=".SetGoal"
+            android:label="Set New Goal">
+
+        </activity>
+        <activity android:name=".AddNewsLetter"
+            android:label="News Letters">
+
+        </activity>
         <activity android:name=".ExportFiles" />
-        <activity android:name=".DeleteStudents"></activity>
+        <activity android:name=".DeleteStudents" android:label="Edit this List">
+
+        </activity>
+        <activity android:name=".Webview" />
+        <activity android:name=".UploadVLink"
+            android:label="Upload Videos">
+
+        </activity>
+        <activity android:name=".AddAttendance" android:label="Attendance Management">
+
+        </activity>
+        <activity android:name=".ViewAllNews"
+            android:label="All Videos">
+
+        </activity>
+        <activity android:name=".AttendanceDates"></activity>
     </application>
 
 </manifest>

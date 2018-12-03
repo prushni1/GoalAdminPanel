@@ -117,13 +117,13 @@ public class HomeScreen extends AppCompatActivity
 
         persons=new ArrayList<>();
 
-        persons.add(new Person(R.mipmap.img_employe));
-        persons.add(new Person(R.mipmap.img_reslt));
-        persons.add(new Person(R.mipmap.img_attendnc));
-        persons.add(new Person(R.mipmap.img_fees));
+        persons.add(new Person(R.drawable.img_employe));
+        persons.add(new Person(R.drawable.img_reslt));
+        persons.add(new Person(R.drawable.img_attendnc));
+        persons.add(new Person(R.drawable.img_fees));
 
-        persons.add(new Person(R.mipmap.img_set_goal));
-        persons.add(new Person(R.mipmap.img_news
+        persons.add(new Person(R.drawable.img_set_goal));
+        persons.add(new Person(R.drawable.img_news
         ));
 
 
@@ -140,29 +140,115 @@ public class HomeScreen extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_export_stu) {
-            
-        } else if (id == R.id.nav_export_fees) {
 
-        } else if (id == R.id.nav_export_result) {
+        if(id== R.id.nav_uploadvideo){
+            Intent it=new Intent(HomeScreen.this,UploadVLink.class);
+            startActivity(it);
+        }
+       else if (id == R.id.nav_export_stu) {
 
-        } else if (id == R.id.nav_logout) {
-
-            boolean loggedin=false;
-            SharedPreferences sp_user_name = HomeScreen.this.getSharedPreferences("KEY_LOGGDIN", 0);
+            String nav_export_stu="student";
+            SharedPreferences sp_user_name = HomeScreen.this.getSharedPreferences("SELECTED_NAV", 0);
             SharedPreferences.Editor spe_user_name = sp_user_name.edit();
 
-            spe_user_name.putBoolean("loggedin", loggedin);
+            spe_user_name.putString("nav_Selection", nav_export_stu);
 
             spe_user_name.commit();
-
-            Intent it=new Intent(HomeScreen.this,LoginScreen.class);
+            Intent it=new Intent(HomeScreen.this,Webview.class);
             startActivity(it);
+            
+        } else if (id == R.id.nav_export_fees) {
+            String nav_export_stu="fees";
+            SharedPreferences sp_user_name = HomeScreen.this.getSharedPreferences("SELECTED_NAV", 0);
+            SharedPreferences.Editor spe_user_name = sp_user_name.edit();
+
+            spe_user_name.putString("nav_Selection", nav_export_stu);
+
+            spe_user_name.commit();
+            Intent it=new Intent(HomeScreen.this,Webview.class);
+            startActivity(it);
+        } else if (id == R.id.nav_export_result) {
+            String nav_export_stu="result";
+            SharedPreferences sp_user_name = HomeScreen.this.getSharedPreferences("SELECTED_NAV", 0);
+            SharedPreferences.Editor spe_user_name = sp_user_name.edit();
+
+            spe_user_name.putString("nav_Selection", nav_export_stu);
+
+            spe_user_name.commit();
+            Intent it=new Intent(HomeScreen.this,Webview.class);
+            startActivity(it);
+        } else if (id == R.id.nav_logout) {
+
+
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+                    HomeScreen.this);
+
+            alertDialog.setTitle("Leave application?");
+
+            alertDialog.setMessage("Are you sure you want to leave the application?");
+
+            alertDialog.setPositiveButton("YES",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            boolean loggedin=false;
+                            SharedPreferences sp_user_name = HomeScreen.this.getSharedPreferences("KEY_LOGGDIN", 0);
+                            SharedPreferences.Editor spe_user_name = sp_user_name.edit();
+
+                            spe_user_name.putBoolean("loggedin", loggedin);
+
+                            spe_user_name.commit();
+
+                            Intent it=new Intent(HomeScreen.this,LoginScreen.class);
+                            startActivity(it);
+                        }
+                    });
+            // Setting Negative "NO" Button
+            alertDialog.setNegativeButton("NO",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Write your code here to invoke NO event
+                            dialog.cancel();
+                        }
+                    });
+            // Showing Alert Message
+            alertDialog.show();
+
 
         } else if (id == R.id.nav_share) {
-
+            final String appPackageName =  getPackageName();
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out This App at: https://play.google.com/store/apps/details?id=" + appPackageName);
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
         } else if (id == R.id.nav_exit) {
 
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+                    HomeScreen.this);
+
+            alertDialog.setTitle("Leave application?");
+
+            alertDialog.setMessage("Are you sure you want to leave the application?");
+
+            alertDialog.setPositiveButton("YES",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent();
+                            intent.setAction(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            startActivity(intent);
+                        }
+                    });
+            // Setting Negative "NO" Button
+            alertDialog.setNegativeButton("NO",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Write your code here to invoke NO event
+                            dialog.cancel();
+                        }
+                    });
+            // Showing Alert Message
+            alertDialog.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

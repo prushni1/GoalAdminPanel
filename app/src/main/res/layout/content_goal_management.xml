@@ -7,5 +7,12 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".GoalManagement"
     tools:showIn="@layout/app_bar_goal_management">
+    <ListView
+        android:id="@+id/lv_goals"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+    </ListView>
 </android.support.constraint.ConstraintLayout>

@@ -1,5 +1,6 @@
 package com.portalperfect.adminapp;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -22,6 +24,7 @@ import java.net.URL;
 
 public class LoginScreen extends AppCompatActivity {
 
+    ProgressBar progressBar;
     String json_value;
     String url_login;
     EditText edt_userid,edt_password;
@@ -34,7 +37,8 @@ public class LoginScreen extends AppCompatActivity {
         edt_userid=(EditText)findViewById(R.id.edt_userid);
         edt_password=(EditText)findViewById(R.id.edt_password);
         btn_login=(Button)findViewById(R.id.btn_login);
-
+        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.INVISIBLE);
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,6 +46,9 @@ public class LoginScreen extends AppCompatActivity {
                     Toast.makeText(LoginScreen.this,"All fields are compulsary",Toast.LENGTH_SHORT).show();
                 }
                 else{
+
+
+                    progressBar.setVisibility(View.VISIBLE);
 
                     //http://portalperfect.com/achievers/Models/Employeelogin.php?email=sh@gmail.com&password=123456
                     url_login="http://portalperfect.com/achievers/Models/Employeelogin.php?email="+edt_userid.getText().toString().replaceAll(" ","%20")
@@ -52,6 +59,8 @@ public class LoginScreen extends AppCompatActivity {
 
                     ComplainDetailAsync complainasync = new  ComplainDetailAsync(url_login);
                     complainasync.execute();
+
+
 
                 }
             }
@@ -77,6 +86,8 @@ public class LoginScreen extends AppCompatActivity {
 
         @Override
         protected Object doInBackground(Object... params) {
+
+
 
             URL url;
             HttpURLConnection urlConnection = null;
@@ -130,6 +141,8 @@ public class LoginScreen extends AppCompatActivity {
     private void parseJsonUrl1(String res) {
         try {
 
+            progressBar.setVisibility(View.INVISIBLE);
+
             JSONObject json = new JSONObject(res);
             Log.e("JSON jsonjson",""+json);
 
@@ -176,4 +189,15 @@ public class LoginScreen extends AppCompatActivity {
         }
     }
 
+
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_MAIN);
+        intent.addCategory(Intent.CATEGORY_HOME);
+        startActivity(intent);
+    }
 }
+
+

@@ -21,6 +21,7 @@
         android:hint="Write Group Name Here"
         android:background="@color/colorPrimaryDark"
         android:padding="10dp"
+        android:textColor="#ffffff"
         android:textColorHint="#ffffff"
         android:layout_margin="10dp"/>
 
@@ -28,6 +29,7 @@
         android:id="@+id/student_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="100px"
         >
 
     </android.support.v7.widget.RecyclerView>
@@ -39,6 +41,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_create_group"
         android:text="Create group"
+        android:background="@color/colorPrimaryDark"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="center"/>
 </LinearLayout>
     </ScrollView>

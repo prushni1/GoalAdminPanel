@@ -4,11 +4,13 @@ package com.portalperfect.adminapp;
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -44,6 +46,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
@@ -64,9 +67,10 @@ import java.util.HashMap;
 public class FeeManagement extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    ProgressBar progressBar;
    Button btn_view_fees;
    ListView lv_allfees_list;
-    ProgressDialog progDialog;
+
 
     String eid;
 
@@ -87,6 +91,9 @@ public class FeeManagement extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.VISIBLE);
+
         lv_allfees_list=(ListView)findViewById(R.id.lv_allfees_list);
         btn_view_fees=(Button)findViewById(R.id.btn_view_fees);
 
@@ -97,11 +104,6 @@ public class FeeManagement extends AppCompatActivity
 
         lv_stu_list=(ListView)findViewById(R.id.lv_stu_list);
 
-        progDialog = new ProgressDialog(FeeManagement.this,R.style.Theme_AppCompat_DayNight_Dialog_Alert);
-        progDialog.setMessage("Please Wait.. .");
-        progDialog.setCancelable(false);
-
-        progDialog.show();
 
         Toast.makeText(FeeManagement.this,"Please Select Name from LIST only.",Toast.LENGTH_SHORT).show();
 
@@ -229,22 +231,120 @@ public class FeeManagement extends AppCompatActivity
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
+
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
+        if(id== R.id.nav_uploadvideo){
+            Intent it=new Intent(FeeManagement.this,UploadVLink.class);
+            startActivity(it);
+        }
+        else if (id == R.id.nav_export_stu) {
 
-        } else if (id == R.id.nav_manage) {
+            String nav_export_stu="student";
+            SharedPreferences sp_user_name = FeeManagement.this.getSharedPreferences("SELECTED_NAV", 0);
+            SharedPreferences.Editor spe_user_name = sp_user_name.edit();
+
+            spe_user_name.putString("nav_Selection", nav_export_stu);
+
+            spe_user_name.commit();
+            Intent it=new Intent(FeeManagement.this,Webview.class);
+            startActivity(it);
+
+        } else if (id == R.id.nav_export_fees) {
+            String nav_export_stu="fees";
+            SharedPreferences sp_user_name = FeeManagement.this.getSharedPreferences("SELECTED_NAV", 0);
+            SharedPreferences.Editor spe_user_name = sp_user_name.edit();
+
+            spe_user_name.putString("nav_Selection", nav_export_stu);
+
+            spe_user_name.commit();
+            Intent it=new Intent(FeeManagement.this,Webview.class);
+            startActivity(it);
+        } else if (id == R.id.nav_export_result) {
+            String nav_export_stu="result";
+            SharedPreferences sp_user_name = FeeManagement.this.getSharedPreferences("SELECTED_NAV", 0);
+            SharedPreferences.Editor spe_user_name = sp_user_name.edit();
+
+            spe_user_name.putString("nav_Selection", nav_export_stu);
+
+            spe_user_name.commit();
+            Intent it=new Intent(FeeManagement.this,Webview.class);
+            startActivity(it);
+        } else if (id == R.id.nav_logout) {
+
+
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+                    FeeManagement.this);
+
+            alertDialog.setTitle("Leave application?");
+
+            alertDialog.setMessage("Are you sure you want to leave the application?");
+
+            alertDialog.setPositiveButton("YES",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            boolean loggedin=false;
+                            SharedPreferences sp_user_name = FeeManagement.this.getSharedPreferences("KEY_LOGGDIN", 0);
+                            SharedPreferences.Editor spe_user_name = sp_user_name.edit();
+
+                            spe_user_name.putBoolean("loggedin", loggedin);
+
+                            spe_user_name.commit();
+
+                            Intent it=new Intent(FeeManagement.this,LoginScreen.class);
+                            startActivity(it);
+                        }
+                    });
+            // Setting Negative "NO" Button
+            alertDialog.setNegativeButton("NO",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Write your code here to invoke NO event
+                            dialog.cancel();
+                        }
+                    });
+            // Showing Alert Message
+            alertDialog.show();
+
 
         } else if (id == R.id.nav_share) {
+            final String appPackageName =  getPackageName();
+            Intent sendIntent = new Intent();
+            sendIntent.setAction(Intent.ACTION_SEND);
+            sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out This App at: https://play.google.com/store/apps/details?id=" + appPackageName);
+            sendIntent.setType("text/plain");
+            startActivity(sendIntent);
+        } else if (id == R.id.nav_exit) {
 
-        } else if (id == R.id.nav_send) {
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+                    FeeManagement.this);
 
+            alertDialog.setTitle("Leave application?");
+
+            alertDialog.setMessage("Are you sure you want to leave the application?");
+
+            alertDialog.setPositiveButton("YES",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent();
+                            intent.setAction(Intent.ACTION_MAIN);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            startActivity(intent);
+                        }
+                    });
+            // Setting Negative "NO" Button
+            alertDialog.setNegativeButton("NO",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Write your code here to invoke NO event
+                            dialog.cancel();
+                        }
+                    });
+            // Showing Alert Message
+            alertDialog.show();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -272,7 +372,7 @@ public class FeeManagement extends AppCompatActivity
         @Override
         protected Object doInBackground(Object... params)
         {
-            progDialog.dismiss();
+            progressBar.setVisibility(View.INVISIBLE);
 
             try
             {   URL url;

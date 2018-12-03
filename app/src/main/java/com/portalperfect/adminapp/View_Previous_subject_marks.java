@@ -1,14 +1,34 @@
 package com.portalperfect.adminapp;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.portalperfect.adminapp.adapters.GetDataAdapter;
+import com.portalperfect.adminapp.adapters.RVAddResultsPage;
+import com.portalperfect.adminapp.adapters.RVPreviousSubjects;
+import com.portalperfect.adminapp.adapters.RecyclerViewAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,13 +41,24 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class View_Previous_subject_marks extends AppCompatActivity {
+
+    //````` JSON DATA OBJECTS
+    List<GetDataAdapter> GetDataAdapter1;
+    RequestQueue requestQueue ;
+    RecyclerView recyclerView;
+
+    RVPreviousSubjects recyclerViewadapter;
+
+    RecyclerView.LayoutManager recyclerViewlayoutManager;
 
 
     TextView tv_selected_sub;
     //----
     ArrayList<HashMap<String, String>> pendingList;
+    JsonObjectRequest jsonArrayRequest ;
 
     HashMap<String, String> jobs;
 
@@ -46,7 +77,6 @@ public class View_Previous_subject_marks extends AppCompatActivity {
         //http://portalperfect.com/achievers/Models/ViewResultBySubject.php?groupname=Girls&subject=xyz&examdate=2018-11-18
 
         mu=new MyUtility();
-        lv_previous_subject=(ListView)findViewById(R.id.lv_previous_subject);
 
         tv_selected_sub=(TextView)findViewById(R.id.tv_selected_sub);
 
@@ -65,131 +95,103 @@ public class View_Previous_subject_marks extends AppCompatActivity {
 
         Log.e("url_previoussubject",""+url_previoussubject);
 
-        if(mu.isInternetAvailable(View_Previous_subject_marks.this)==true){
+
+//`````````````````````````
+        GetDataAdapter1 = new ArrayList<>();
+
+        recyclerView = (RecyclerView) findViewById(R.id.student_rv);
+
+        recyclerView.setHasFixedSize(true);
+
+        recyclerViewlayoutManager = new LinearLayoutManager(this);
+
+        recyclerView.setLayoutManager(recyclerViewlayoutManager);
+
+        GetDataAdapter1.clear();
+
+        JSON_DATA_WEB_CALL();
 
 
-            ComplainDetailAsync complainasync = new  ComplainDetailAsync(url_previoussubject);
-            complainasync.execute();
-
-        }
-        else{
-            Toast.makeText(View_Previous_subject_marks.this, "Please connect to Internet.", Toast.LENGTH_LONG).show();
-
-        }
-
-    }
-
-
-    // -- ASYNC
-    private class ComplainDetailAsync extends AsyncTask<Object, Object, Object> {
-        private String url_registeration;
-        private InputStream is;
-        private String res;
-
-        public ComplainDetailAsync(String url_registeration) {
-            this.url_registeration = url_registeration;
-        }
-
-        @Override
-        protected Object doInBackground(Object... params) {
-
-            URL url;
-            HttpURLConnection urlConnection = null;
-            try {
-                url = new URL(url_registeration);
-
-
-                urlConnection = (HttpURLConnection) url.openConnection();
-                is = urlConnection.getInputStream();
-                InputStreamReader isw = new InputStreamReader(is);
-
-
-            } catch (Exception e) {
-                // Log.i("log_tag", "Error in http conection  " + e.toString());
-            }
-
-            try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(is, "iso-8859-1"), 8);
-                StringBuilder sb = new StringBuilder();
-                String line = null;
-
-                while ((line = reader.readLine()) != null) {
-                    sb.append(line + "\n");
-                }
-                is.close();
-                res = sb.toString();
-                Log.i("Response from url = ", res);
-
-            } catch (Exception e) {
-                // Log.i("log_tag", "Error converting resulturl " + e.toString());
-            }
-            return res;
-        }
-
-        @Override
-        protected void onPostExecute(Object result11) {
-            super.onPostExecute(result11);
-            if(result11!=null){
-                returnResultUrl(res);
-            }
-
-
-        }
-    }
-
-    private void returnResultUrl(String res) {
-        parseJsonUrl(res);
+//```````````````````````````````
 
     }
 
-    private void parseJsonUrl(String res) {
-        try {
-            // prog_dialog.dismiss();
+    //#################JSON DATA
+    public void JSON_DATA_WEB_CALL(){
+
+        jsonArrayRequest = new JsonObjectRequest(
+                Request.Method.GET,
+                url_previoussubject,
+                null,
+
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                         Toast.makeText(View_Previous_subject_marks.this, "Please Wait.", Toast.LENGTH_LONG).show();
 
 
-            JSONObject json = new JSONObject(res);
-
-            JSONArray sucess = (JSONArray) json.get("resulbysubject");
-//            Log.e("jsonARRay  =", "" + sucess);
-            Log.e("ARRAY LENGTH  =", "" + sucess.length());
-
-            if (sucess.length() == 0) {
-                Toast.makeText(View_Previous_subject_marks.this, "No Data Found!", Toast.LENGTH_LONG).show();
-            }
-
-            pendingList = new ArrayList<HashMap<String, String>>();
-
-            for (int i = 0; i <= sucess.length(); i++) {
-
-                jobs = new HashMap<String, String>();
-
-                firstRoute = sucess.getJSONObject(i);
-                Log.e("marks =", "" + (firstRoute.getString("marks")));
+                        try {
+                            JSONArray array = response.getJSONArray("resulbysubject");
+                            Log.e("array", " =" + array);
+                             Log.e("length", " =" + array.length());
 
 
-               // jobs.put("fullname","Name : "+(firstRoute.getString("fullname")) );
-                jobs.put("marks","Name : "+(firstRoute.getString("fullname")) +"\n"+ "marks : "+(firstRoute.getString("marks")));
+                            for(int i=0;i<array.length();i++) {
+                                GetDataAdapter GetDataAdapter2 = new GetDataAdapter();
 
-                jobs.put("outof", "Out Of : "+(firstRoute.getString("outof")));
+                                JSONObject jsonobj=null;
+                                try{
+
+                                jsonobj= array.getJSONObject(i);
+                                Log.e("jsonobj", " =" + jsonobj);
+
+                                // MARKS=PHONE NAME=NAME OUTOF=CITY  NEWID=ID  TESTRESULT=TESTRESULT
+                                GetDataAdapter2.setPhone_number((jsonobj.getString("marks")));
+
+                                GetDataAdapter2.setName(jsonobj.getString("fullname"));
+                                GetDataAdapter2.setCity(jsonobj.getString("outof"));
+                                GetDataAdapter2.setNewid( (jsonobj.getString("sid")));
+                                GetDataAdapter2.setTestresult(jsonobj.getString("testresult"));
+                                    GetDataAdapter2.setSubject(jsonobj.getString("subject"));
+
+                                    Log.e("GetDataAdapter2", " =" + GetDataAdapter2);
+
+                                } catch (JSONException e) {
+
+                                    e.printStackTrace();
+                                }
+                                GetDataAdapter1.add(GetDataAdapter2);
+                            }
+                            recyclerViewadapter = new RVPreviousSubjects(GetDataAdapter1,View_Previous_subject_marks.this );
 
 
-                pendingList.add(jobs);
+                            recyclerView.setAdapter(recyclerViewadapter);
 
-                String[] from = {"marks", "outof" };
-
-
-                int[] to = {R.id.tv_subject, R.id.tv_date };
-
-                mSchedule = new SimpleAdapter(View_Previous_subject_marks.this, pendingList, R.layout.custom_previous_result, from, to);
+                        } catch (JSONException e) {
+                            Log.e("CANT TRY","SO CATCH");
+                            e.printStackTrace();
+                        }
 
 
-                lv_previous_subject.setAdapter(mSchedule);
-                Log.e("after setAdapter  =", "");
-            }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    Log.e("Error Listner","");
 
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+                    }
+                });
+
+        requestQueue = Volley.newRequestQueue(this);
+
+        requestQueue.add(jsonArrayRequest);
     }
+
+
+
+
 }
+

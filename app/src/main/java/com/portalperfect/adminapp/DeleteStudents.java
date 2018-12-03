@@ -344,6 +344,13 @@ public class DeleteStudents extends AppCompatActivity {
 
             }
 
+            if (code.equalsIgnoreCase("resultexist")){
+                Toast.makeText(DeleteStudents.this,"Sorry you can't delete this student, Result of this student exist!",Toast.LENGTH_LONG).show();
+
+            }
+
+            //Sorry you can't delete this student, Result of this student exist.!
+
 
         } catch(JSONException e){
 

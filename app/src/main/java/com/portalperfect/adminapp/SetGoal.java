@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +18,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import org.json.JSONArray;
@@ -33,6 +36,7 @@ import java.util.ArrayList;
 
 public class SetGoal extends AppCompatActivity {
 
+    ProgressBar progressBar;
     String url_goal;
     ListView lv_stu_list;
     //--
@@ -53,6 +57,9 @@ public class SetGoal extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_goal);
 
+        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.VISIBLE);
+
         edt_student_nm=(EditText)findViewById(R.id.edt_student_nm);
 
         edt_select_subject=(EditText)findViewById(R.id.edt_select_subject);
@@ -69,6 +76,7 @@ public class SetGoal extends AppCompatActivity {
                 lv_stu_list.setVisibility(View.GONE);
             }
         });
+        Toast.makeText(SetGoal.this, "Wait..!", Toast.LENGTH_LONG).show();
 
 
 
@@ -167,8 +175,27 @@ public class SetGoal extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.setgoal, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.viewgoals:
 
-    //--- GET STU LIST
+                Intent it=new Intent(SetGoal.this,GoalManagement.class);
+                startActivity(it);
+
+                return true;
+
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+                //--- GET STU LIST
 
 
     // -- ASYNC
@@ -186,7 +213,6 @@ public class SetGoal extends AppCompatActivity {
         @Override
         protected Object doInBackground(Object... params)
         {
-
 
             try
             {   URL url;
@@ -230,6 +256,7 @@ public class SetGoal extends AppCompatActivity {
         protected void onPostExecute(Object result11)
         {
 
+            progressBar.setVisibility(View.INVISIBLE);
             Log.e("result11", "  "+result11 );
 
 

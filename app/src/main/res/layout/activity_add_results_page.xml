@@ -17,6 +17,12 @@
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
+        <!-- Dummy item to prevent AutoCompleteTextView from receiving focus -->
+        <LinearLayout
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_width="0px"
+            android:layout_height="0px"/>
     <EditText
         android:id="@+id/edt_subjectname"
         android:layout_width="match_parent"
@@ -26,6 +32,17 @@
         android:fontFamily="@font/calibri"
         android:padding="10dp"/>
 
+        <ProgressBar
+            android:id="@+id/progressbar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:max="100"
+            android:backgroundTint="@color/white"
+            android:layout_below="@+id/framelauout"
+            android:indeterminateTint="#1a09d6"
+            android:layout_marginTop="-7dp"/>
 
     <EditText
         android:id="@+id/edt_outof"
@@ -65,7 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_submit_marks"
-        android:text="Submit Marks"
+        android:text="Add Results"
 
         android:layout_gravity="center"
         android:padding="10dp"

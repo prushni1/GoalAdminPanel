@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
@@ -70,6 +71,7 @@ public class AddResultsPage extends AppCompatActivity {
     //````` JSON DATA OBJECTS
     List<GetDataAdapter> GetDataAdapter1;
 
+    ProgressBar progressBar;
     RecyclerView recyclerView;
 
     RVAddResultsPage recyclerViewadapter;
@@ -79,6 +81,10 @@ public class AddResultsPage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_results_page);
+
+
+        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.VISIBLE);
 
         mu=new MyUtility();
         btn_Date=(Button)findViewById(R.id.btn_Date);
@@ -90,7 +96,7 @@ public class AddResultsPage extends AppCompatActivity {
         SharedPreferences sp_clientid = AddResultsPage.this.getSharedPreferences("GROUPNAME", 0);
         selected_group_name = sp_clientid.getString("selected_group_name", " ");
 
-        url_grp_Students="http://portalperfect.com/achievers/Models/ViewResultGroupByNameDemo.php?groupname="+selected_group_name.replaceAll(" ","%20");
+        url_grp_Students="http://portalperfect.com/achievers/Models/StudentsInGroup.php?groupname="+selected_group_name.replaceAll(" ","%20");
 
 
         Log.e("ADD RESULTS","="+url_grp_Students);
@@ -329,6 +335,8 @@ public class AddResultsPage extends AppCompatActivity {
 
 
             JSONObject json = null;
+
+
             try {
                 json = array.getJSONObject(i);
 
@@ -344,10 +352,12 @@ public class AddResultsPage extends AppCompatActivity {
             GetDataAdapter1.add(GetDataAdapter2);
         }
         recyclerViewadapter = new RVAddResultsPage(GetDataAdapter1,AddResultsPage.this,editModelArrayList );
-
+        progressBar.setVisibility(View.INVISIBLE);
 
         recyclerView.setAdapter(recyclerViewadapter);
     }
+
+
     private ArrayList<EditModel> populateList(){
 
         ArrayList<EditModel> list = new ArrayList<>();

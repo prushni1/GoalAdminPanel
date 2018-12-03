@@ -72,6 +72,11 @@ public class Result_add_Group extends AppCompatActivity  implements DataInterfac
 
         btn_create_group=(Button)findViewById(R.id.btn_create_group);
 
+
+        Toast.makeText(Result_add_Group.this,"LOADING...",Toast.LENGTH_LONG).show();
+
+        Toast.makeText(Result_add_Group.this,"Please Wait...",Toast.LENGTH_LONG).show();
+
         btn_create_group.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -201,7 +206,7 @@ public class Result_add_Group extends AppCompatActivity  implements DataInterfac
                     e.printStackTrace();
                 }
                 GetDataAdapter1.add(GetDataAdapter2);
-  }
+                }
             recyclerViewadapter = new RecyclerViewAdapter(GetDataAdapter1,Result_add_Group.this );
 
 

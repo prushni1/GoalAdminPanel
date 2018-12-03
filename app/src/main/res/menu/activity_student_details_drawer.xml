@@ -4,22 +4,27 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
         <item
-            android:id="@+id/nav_camera"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
-        <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_uploadvideo"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Upload Video Link" />
+        <item
+            android:id="@+id/nav_export_stu"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Export Student" />
+        <item
+            android:id="@+id/nav_export_fees"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Export Fees" />
+        <item
+            android:id="@+id/nav_export_result"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Export Result" />
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="LogOut" />
     </group>
 
     <item android:title="Communicate">
@@ -29,9 +34,9 @@
                 android:icon="@drawable/ic_menu_share"
                 android:title="Share" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_exit"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Exit" />
         </menu>
     </item>
 

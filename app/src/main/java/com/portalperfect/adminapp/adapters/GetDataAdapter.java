@@ -1,8 +1,6 @@
 package com.portalperfect.adminapp.adapters;
 
-/**
- * Created by JUNED on 6/16/2016.
- */
+
 public class GetDataAdapter {
 
     int Id;
@@ -10,6 +8,24 @@ public class GetDataAdapter {
     String phone_number;
     String subject;
     String city;
+
+    String newid,testresult;
+
+    public String getTestresult() {
+        return testresult;
+    }
+
+    public void setTestresult(String testresult) {
+        this.testresult = testresult;
+    }
+
+    public String getNewid() {
+        return newid;
+    }
+
+    public void setNewid(String newid) {
+        this.newid = newid;
+    }
 
     public String getCity() {
         return city;

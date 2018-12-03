@@ -4,6 +4,11 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_uploadvideo"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Upload Video Link" />
         <item
             android:id="@+id/nav_export_stu"
             android:icon="@drawable/ic_menu_camera"
@@ -19,7 +24,7 @@
         <item
             android:id="@+id/nav_logout"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Log Out" />
+            android:title="LogOut" />
     </group>
 
     <item android:title="Communicate">

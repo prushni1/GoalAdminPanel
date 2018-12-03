@@ -1,11 +1,23 @@
 package com.portalperfect.adminapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnKeyListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -33,6 +45,45 @@ public class AddNewsLetter extends AppCompatActivity {
         edt_news_details=(EditText)findViewById(R.id.edt_news_details);
         btn_submit_news=(Button) findViewById(R.id.btn_submit_news);
 
+
+        edt_news_subject.setOnKeyListener(new OnKeyListener()
+        {
+            /**
+             * This listens for the user to press the enter button on
+             * the keyboard and then hides the virtual keyboard
+             */
+            public boolean onKey(View arg0, int arg1, KeyEvent event)
+            {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (arg1 == KeyEvent.KEYCODE_ENTER))
+                {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(edt_news_subject.getWindowToken(), 0);
+                    return true;
+                }
+                return false;
+            }
+        } );
+
+
+        edt_news_details.setOnKeyListener(new OnKeyListener()
+        {
+            /**
+             * This listens for the user to press the enter button on
+             * the keyboard and then hides the virtual keyboard
+             */
+            public boolean onKey(View arg0, int arg1, KeyEvent event)
+            {
+                // If the event is a key-down event on the "enter" button
+                if ((event.getAction() == KeyEvent.ACTION_DOWN) && (arg1 == KeyEvent.KEYCODE_ENTER))
+                {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(edt_news_details.getWindowToken(), 0);
+                    return true;
+                }
+                return false;
+            }
+        } );
 
         btn_submit_news.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +114,26 @@ public class AddNewsLetter extends AppCompatActivity {
         });
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.addnewsletter, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.viewnews:
+
+                Intent it=new Intent(AddNewsLetter.this,ViewAllNews.class);
+                startActivity(it);
+
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
 
     // -- ASYNC
     private class ComplainDetailAsync extends AsyncTask<Object, Object, Object> {

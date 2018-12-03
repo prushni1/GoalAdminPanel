@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center_vertical">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,6 +37,13 @@
                 android:background="@drawable/bgwithshadow"
                 android:layout_gravity="center">
 
+
+                <!-- Dummy item to prevent AutoCompleteTextView from receiving focus -->
+                <LinearLayout
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_width="0px"
+                    android:layout_height="0px"/>
                 <EditText
                     android:id="@+id/edt_userid"
                     android:layout_width="match_parent"
@@ -48,7 +56,17 @@
                     android:layout_margin="5dp"
                     />
 
-
+                <ProgressBar
+                    android:id="@+id/progressbar"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="true"
+                    android:max="100"
+                    android:backgroundTint="@color/white"
+                    android:layout_below="@+id/framelauout"
+                    android:indeterminateTint="#1a09d6"
+                    android:layout_marginTop="-7dp"/>
                 <EditText
                     android:id="@+id/edt_password"
                     android:layout_width="match_parent"

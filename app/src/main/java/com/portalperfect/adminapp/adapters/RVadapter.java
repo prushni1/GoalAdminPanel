@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.portalperfect.adminapp.AddNewStudent;
 import com.portalperfect.adminapp.AddNewsLetter;
+import com.portalperfect.adminapp.AttendanceManagement;
 import com.portalperfect.adminapp.FeeManagement;
 import com.portalperfect.adminapp.HomeScreen;
 import com.portalperfect.adminapp.MyUtility;
@@ -128,7 +129,7 @@ public class RVadapter extends RecyclerView.Adapter<RVadapter.PersonViewHolder> 
                     else  if(position==2){
 
 
-                        Intent it=new Intent(v.getContext(), HomeScreen.class) ;
+                        Intent it=new Intent(v.getContext(), AttendanceManagement.class) ;
                         v.getContext().startActivity(it);
 
                     }
