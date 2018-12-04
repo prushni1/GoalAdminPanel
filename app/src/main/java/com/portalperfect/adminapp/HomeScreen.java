@@ -141,7 +141,15 @@ public class HomeScreen extends AppCompatActivity
         int id = item.getItemId();
 
 
-        if(id== R.id.nav_uploadvideo){
+        if(id==R.id.nav_home){
+            Intent it=new Intent(HomeScreen.this,HomeScreen.class);
+            startActivity(it);
+        }
+        else if( id == R.id.nav_studentmgme){
+            Intent it=new Intent(HomeScreen.this,StudentManagement.class);
+            startActivity(it);
+        }
+       else if(id== R.id.nav_uploadvideo){
             Intent it=new Intent(HomeScreen.this,UploadVLink.class);
             startActivity(it);
         }

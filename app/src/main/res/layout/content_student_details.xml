@@ -31,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/tv_studentid"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
             android:text="id"
             android:fontFamily="@font/calibri"
             android:padding="5dp"
@@ -42,6 +43,7 @@
             android:id="@+id/tv_group_name"
             android:text="group"
             android:fontFamily="@font/calibri"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
             android:padding="5dp"
             android:layout_margin="10dp"
             android:background="@color/cardview_light_background"/>
@@ -53,6 +55,7 @@
             android:text="name"
             android:fontFamily="@font/calibri"
             android:padding="5dp"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
             android:layout_margin="10dp"
             android:background="@color/cardview_light_background"/>
 
@@ -73,6 +76,7 @@
             android:fontFamily="@font/calibri"
             android:padding="5dp"
             android:layout_margin="10dp"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
             android:background="@color/cardview_light_background"/>
 
         <TextView
@@ -83,6 +87,7 @@
             android:fontFamily="@font/calibri"
             android:padding="5dp"
             android:layout_margin="10dp"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
             android:background="@color/cardview_light_background"/>
 
         <TextView
@@ -91,11 +96,28 @@
             android:id="@+id/tv_email"
             android:text="email"
             android:fontFamily="@font/calibri"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
             android:padding="5dp"
             android:layout_margin="10dp"
             android:background="@color/cardview_light_background"/>
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_stu_en_dis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enable"
+            android:textColor="#ffffff"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:text="Click Button to change status"
+            android:padding="10dp"
+            android:layout_gravity="center"/>
     </LinearLayout>
 
     </ScrollView>

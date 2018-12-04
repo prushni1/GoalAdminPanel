@@ -48,7 +48,9 @@ public class StudentDetails extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ProgressDialog progDialog;
-    String url_upload_marks;
+
+    Button btn_stu_en_dis;
+    String url_upload_marks,status_stu;
     TextView tv_studentid,tv_group_name,tv_student_name,tv_studentmobile,tv_parentmobile,tv_email;
       HashMap<String, String> jobs;
 
@@ -66,10 +68,14 @@ public class StudentDetails extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        SharedPreferences sp_clientid = StudentDetails.this.getSharedPreferences("SELECTED_STUDENT", 0);
-        selected_group_id = sp_clientid.getString("selected_group_id", " ");
-        selected_student_id = sp_clientid.getString("selected_student_id", " ");
-        selected_group_name = sp_clientid.getString("selected_group_name", " ");
+        btn_stu_en_dis=(Button)findViewById(R.id.btn_stu_en_dis);
+
+
+        SharedPreferences sp_clientid = StudentDetails.this.getSharedPreferences("RVSTu_id", 0);
+
+        selected_student_id = sp_clientid.getString("rv_sid", " ");
+        status_stu= sp_clientid.getString("rv_status", " ");
+
 
         tv_studentid=(TextView)findViewById(R.id.tv_studentid);
         tv_group_name=(TextView)findViewById(R.id.tv_group_name);
@@ -78,6 +84,19 @@ public class StudentDetails extends AppCompatActivity
         tv_parentmobile=(TextView)findViewById(R.id.tv_parentmobile);
         tv_email=(TextView)findViewById(R.id.tv_email);
 
+        if(status_stu.equalsIgnoreCase("0")){
+            //0 means it is disabled== so we have to enable
+            btn_stu_en_dis.setText("Disabled");
+            btn_stu_en_dis.setBackgroundResource(R.color.red);
+
+        }
+        else if(status_stu.equalsIgnoreCase("1")){
+            //1 means it is enabled== so we have to disable
+            btn_stu_en_dis.setText("Enabled");
+
+            btn_stu_en_dis.setBackgroundResource(R.color.green);
+
+        }
 
         student_url="http://portalperfect.com/achievers/Models/ViewStudentDetail.php?sid="+selected_student_id;
 
@@ -112,7 +131,8 @@ public class StudentDetails extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            Intent it=new Intent(StudentDetails.this,StudentManagement.class);
+            startActivity(it);
         }
     }
 

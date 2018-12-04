@@ -143,8 +143,8 @@ public class ViewAllStudents extends AppCompatActivity {
 
 
 
-                Intent it=new Intent(ViewAllStudents.this,StudentDetails.class);
-                startActivity(it);
+//                Intent it=new Intent(ViewAllStudents.this,StudentDetails.class);
+//                startActivity(it);
             }
         });
     }

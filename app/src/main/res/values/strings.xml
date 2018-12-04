@@ -40,5 +40,6 @@
 
     </string-array>
     <string name="title_activity_student_details">StudentDetails</string>
+    <string name="title_activity_student_management">StudentManagement</string>
 
 </resources>

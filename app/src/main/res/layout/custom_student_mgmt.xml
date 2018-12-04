@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"  >
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="3" >
+
+
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_height="wrap_content"
+        android:layout_width="0dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_s_id"
+            android:text="id"
+            android:layout_weight="0.5"
+            android:background="@drawable/rounded_border"
+            android:textColor="#000000"
+            android:padding="20dip" android:gravity="center"/>
+
+
+        <TextView
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_name"
+            android:text="Name"
+            android:layout_weight="1"
+
+            android:textColor="#000000"
+            android:padding="20dip" android:gravity="center"/>
+
+        <Button
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_enable_disable"
+            android:text="enable"
+            android:layout_weight="1"
+
+            android:background="@drawable/rounded_border"
+            android:textColor="#ffffff"
+            android:padding="20dip" android:gravity="center"/>
+
+    </TableRow>
+
+        </TableLayout>
+    </LinearLayout></LinearLayout>

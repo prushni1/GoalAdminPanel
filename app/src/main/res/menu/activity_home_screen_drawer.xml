@@ -6,6 +6,15 @@
     <group android:checkableBehavior="single">
 
         <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Home" />
+        <item
+            android:id="@+id/nav_studentmgme"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Student Management" />
+
+        <item
             android:id="@+id/nav_uploadvideo"
             android:icon="@drawable/ic_menu_manage"
             android:title="Upload Video Link" />
